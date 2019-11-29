@@ -124,7 +124,6 @@ def sync_endpoint(client, #pylint: disable=too-many-branches
                   bookmark_query_field=None,
                   bookmark_field=None,
                   bookmark_type=None,
-                  data_key=None,
                   id_fields=None,
                   selected_streams=None,
                   parent=None,
@@ -197,9 +196,9 @@ def sync_endpoint(client, #pylint: disable=too-many-branches
         transformed_data = [] # initialize the record list
         data_list = []
         # data_dict = {}
-        if isinstance(data, list) and not data_key in data:
+        if isinstance(data, list):
             data_list = data
-            transformed_data = transform_json(data, stream_name, data_key)
+            transformed_data = transform_json(data, stream_name)
 
         if not transformed_data or transformed_data is None:
             LOGGER.info('No transformed data for data = {}'.format(data))
@@ -316,7 +315,6 @@ def sync(client, config, catalog, state):
             bookmark_query_field=endpoint_config.get('bookmark_query_field', None),
             bookmark_field=bookmark_field,
             bookmark_type=endpoint_config.get('bookmark_type', None),
-            data_key=endpoint_config.get('data_key', stream_name),
             id_fields=endpoint_config.get('key_properties'),
             selected_streams=selected_streams)
 

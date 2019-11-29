@@ -12,17 +12,17 @@ def flatten_children(tree, nodes=list()):
                 record.pop('children', None)
                 nodes.append(record)
 
-def transform_team_tree(this_json, data_key):
+def transform_recursive_tree(this_json):
     nodes = []
     for record in list(this_json):
         flatten_children(record, nodes=nodes)
     return nodes
 
 # Run other transforms, as needed: flatten trees
-def transform_json(this_json, stream_name, data_key):
+def transform_json(this_json, stream_name):
     # ADD TRANSFORMATIONS
     if stream_name in ('team_tree', 'menu_tree'):
-        denested_json = transform_team_tree(this_json, data_key)
+        denested_json = transform_recursive_tree(this_json)
     else:
         denested_json = this_json
 
