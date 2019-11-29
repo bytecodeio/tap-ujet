@@ -130,7 +130,7 @@ class UjetClient(object):
                           Server5xxError,
                           max_tries=5,
                           factor=2)
-    @utils.ratelimit(1, 1.5)
+    @utils.ratelimit(1, 1.2)
     def check_access(self):
         if self.__company_key is None or self.__company_secret is None:
             raise Exception('Error: Missing company_key or company_secret in config.json.')

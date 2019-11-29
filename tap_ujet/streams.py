@@ -13,6 +13,7 @@
 #   bookmark_query_field: From date-time field used for filtering the query
 #   bookmark_type: Data type for bookmark, integer or datetime
 
+
 STREAMS = {
     'agents': {
         'key_properties': ['id'],
