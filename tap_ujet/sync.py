@@ -1,4 +1,3 @@
-import json
 import math
 import time
 
@@ -119,14 +118,11 @@ def sync_endpoint(client, #pylint: disable=too-many-branches
                   start_date,
                   stream_name,
                   path,
-                  endpoint_config,
                   static_params,
                   bookmark_query_field=None,
                   bookmark_field=None,
                   bookmark_type=None,
                   data_key=None,
-                  id_fields=None,
-                  selected_streams=None,
                   parent=None,
                   parent_id=None):
 
@@ -144,7 +140,6 @@ def sync_endpoint(client, #pylint: disable=too-many-branches
         max_bookmark_int = int(time.mktime(max_bookmark_dttm.timetuple()))
         now_int = int(time.time())
         updated_since_sec = now_int - max_bookmark_int
-        updated_since_days = math.ceil(updated_since_sec/(24 * 60 * 60))
 
     # pagination: loop thru all pages of data using next_url (if not None)
     page = 1
@@ -198,14 +193,11 @@ def sync_endpoint(client, #pylint: disable=too-many-branches
         data_list = []
         # data_dict = {}
         if isinstance(data, list) and not data_key in data:
-            data_list = data
             transformed_data = transform_json(data, stream_name, data_key)
 
         if not transformed_data or transformed_data is None:
             LOGGER.info('No transformed data for data = {}'.format(data))
             return total_endpoint_records # No data results
-
-        total_submitted_records = len(transformed_data)
 
         rec_count = 0
 

@@ -1,4 +1,4 @@
-def flatten_children(tree, nodes=list()):
+def flatten_children(tree, nodes):
     record = dict(tree)
     record.pop('children', None)
     nodes.append(record)
