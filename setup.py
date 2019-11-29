@@ -20,6 +20,7 @@ setup(name='tap-ujet',
       packages=find_packages(),
       package_data={
           'tap_ujet': [
-              'schemas/*.json'
+              'schemas/*.json',
+              'tests/*.py'
           ]
       })
