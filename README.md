@@ -41,7 +41,60 @@ This tap:
   - Bookmark query field: status_updated_at[from]
 - Transformations: none
 
-**ADD OTHER ENDPOINTS**
+**calls**
+- Endpoint: https://{subdomain}.ujet.co/manager/api/v1/calls
+- Primary key fields: id
+- Foreign key fields: teams > id
+- Replication strategy: INCREMENTAL (query filtered)
+  - Bookmark: updated_at
+  - Bookmark query field: updated_at[from]
+- Transformations: none
+
+**chats**
+- Endpoint: https://{subdomain}.ujet.co/manager/api/v1/chats
+- Primary key fields: id
+- Foreign key fields: teams > id
+- Replication strategy: INCREMENTAL (query filtered)
+  - Bookmark: updated_at
+  - Bookmark query field: updated_at[from]
+- Transformations: none
+
+**menu_tree**
+- Endpoint: https://{subdomain}.ujet.co/manager/api/v1/menu/tree
+- Primary key fields: id
+- Foreign key fields: none
+- Replication strategy: FULL_TABLE
+- Transformations: de-nest all recursive 'children'
+
+**menus**
+- Endpoint: https://{subdomain}.ujet.co/manager/api/v1/menus
+- Primary key fields: id
+- Foreign key fields: none
+- Replication strategy: FULL_TABLE
+- Transformations: none
+
+**team_tree**
+- Endpoint: https://{subdomain}.ujet.co/manager/api/v1/team/tree
+- Primary key fields: id
+- Foreign key fields: none
+- Replication strategy: FULL_TABLE
+- Transformations: de-nest all recursive 'children'
+
+**teams**
+- Endpoint: https://{subdomain}.ujet.co/manager/api/v1/teams
+- Primary key fields: id
+- Foreign key fields: none
+- Replication strategy: FULL_TABLE
+- Transformations: none
+
+**user_statuses**
+- Endpoint: https://{subdomain}.ujet.co/manager/api/v1/user_statuses
+- Primary key fields: id
+- Foreign key fields: none
+- Replication strategy: FULL_TABLE
+- Transformations: none
+
+
 
 
 ## Authentication
