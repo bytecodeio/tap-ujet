@@ -11,7 +11,7 @@ MENU_TREE = [
         "children": [
             {
                 "id": 17,
-                "name": "August Smart Lock",
+                "name": "ACME Smart Lock",
                 "parent_id": 60,
                 "position": 0,
                 "deleted": False,
@@ -191,7 +191,7 @@ MENU_TREE = [
             },
             {
                 "id": 18,
-                "name": "August Connect",
+                "name": "ACME Connect",
                 "parent_id": 60,
                 "position": 1,
                 "deleted": False,
@@ -203,7 +203,7 @@ MENU_TREE = [
             },
             {
                 "id": 19,
-                "name": "August Smart Keypad",
+                "name": "ACME Smart Keypad",
                 "parent_id": 60,
                 "position": 2,
                 "deleted": False,
@@ -215,7 +215,7 @@ MENU_TREE = [
             },
             {
                 "id": 20,
-                "name": "August Doorbell Cam",
+                "name": "ACME Doorbell Cam",
                 "parent_id": 60,
                 "position": 3,
                 "deleted": False,
@@ -239,7 +239,7 @@ MENU_TREE = [
         "children": [
             {
                 "id": 63,
-                "name": "August Smart Lock",
+                "name": "ACME Smart Lock",
                 "parent_id": 61,
                 "position": 0,
                 "deleted": False,
@@ -395,7 +395,7 @@ MENU_TREE = [
             },
             {
                 "id": 64,
-                "name": "August Connect",
+                "name": "ACME Connect",
                 "parent_id": 61,
                 "position": 1,
                 "deleted": False,
@@ -407,7 +407,7 @@ MENU_TREE = [
             },
             {
                 "id": 65,
-                "name": "August Smart Keypad",
+                "name": "ACME Smart Keypad",
                 "parent_id": 61,
                 "position": 2,
                 "deleted": False,
@@ -419,7 +419,7 @@ MENU_TREE = [
             },
             {
                 "id": 66,
-                "name": "August Doorbell Cam",
+                "name": "ACME Doorbell Cam",
                 "parent_id": 61,
                 "position": 3,
                 "deleted": False,
