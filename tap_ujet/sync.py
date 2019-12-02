@@ -1,10 +1,6 @@
-import math
-import time
-
 import singer
 from singer import (UNIX_SECONDS_INTEGER_DATETIME_PARSING, Transformer,
                     metadata, metrics, utils)
-from singer.utils import strptime_to_utc
 from tap_ujet.streams import STREAMS
 from tap_ujet.transform import transform_json
 
@@ -51,7 +47,7 @@ def write_bookmark(state, stream, value):
 # def transform_datetime(this_dttm):
 def transform_datetime(this_dttm):
     with Transformer() as transformer:
-        new_dttm = transformer._transform_datetime(this_dttm)
+        new_dttm = transformer._transform_datetime(this_dttm) # pylint: disable=protected-access
     return new_dttm
 
 
@@ -122,8 +118,6 @@ def sync_endpoint(client, #pylint: disable=too-many-branches
                   bookmark_query_field=None,
                   bookmark_field=None,
                   bookmark_type=None,
-                  id_fields=None,
-                  selected_streams=None,
                   parent=None,
                   parent_id=None):
 
@@ -137,10 +131,6 @@ def sync_endpoint(client, #pylint: disable=too-many-branches
     else:
         last_datetime = get_bookmark(state, stream_name, start_date)
         max_bookmark_value = last_datetime
-        max_bookmark_dttm = strptime_to_utc(last_datetime)
-        max_bookmark_int = int(time.mktime(max_bookmark_dttm.timetuple()))
-        now_int = int(time.time())
-        updated_since_sec = now_int - max_bookmark_int
 
     # pagination: loop thru all pages of data using next_url (if not None)
     page = 1
@@ -191,9 +181,7 @@ def sync_endpoint(client, #pylint: disable=too-many-branches
         # Transform data with transform_json from transform.py
         # The data_key identifies the array/list of records below the <root> element
         transformed_data = [] # initialize the record list
-        data_list = []
         if isinstance(data, list):
-            data_list = data
             transformed_data = transform_json(data, stream_name)
 
         if not transformed_data or transformed_data is None:
@@ -304,13 +292,10 @@ def sync(client, config, catalog, state):
             start_date=start_date,
             stream_name=stream_name,
             path=path,
-            endpoint_config=endpoint_config,
             static_params=endpoint_config.get('params', {}),
             bookmark_query_field=endpoint_config.get('bookmark_query_field', None),
             bookmark_field=bookmark_field,
-            bookmark_type=endpoint_config.get('bookmark_type', None),
-            id_fields=endpoint_config.get('key_properties'),
-            selected_streams=selected_streams)
+            bookmark_type=endpoint_config.get('bookmark_type', None))
 
         update_currently_syncing(state, None)
         LOGGER.info('FINISHED Syncing: {}, total_records: {}'.format(
